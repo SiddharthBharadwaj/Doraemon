@@ -133,6 +133,9 @@ HIT = (
 GMAPS_LOC = "https://maps.googleapis.com/maps/api/geocode/json"
 GMAPS_TIME = "https://maps.googleapis.com/maps/api/timezone/json"
 
+def ping(bot: Bot, update: Update):
+    requests.get('https://api.telegram.org')
+    update.effective_message.reply_text("Ha, Zinda Hu Madharxod")
 
 @run_async
 def runs(bot: Bot, update: Update):
@@ -393,6 +396,8 @@ __mod_name__ = "Misc"
 
 ID_HANDLER = DisableAbleCommandHandler("id", get_id, pass_args=True)
 IP_HANDLER = CommandHandler("ip", get_bot_ip, filters=Filters.chat(OWNER_ID))
+PING_HANDLER = DisableAbleCommandHandler("ping", ping)
+
 
 TIME_HANDLER = CommandHandler("time", get_time, pass_args=True)
 
@@ -416,3 +421,4 @@ dispatcher.add_handler(ECHO_HANDLER)
 dispatcher.add_handler(MD_HELP_HANDLER)
 dispatcher.add_handler(STATS_HANDLER)
 dispatcher.add_handler(GDPR_HANDLER)
+dispatcher.add_handler(PING_HANDLER)
